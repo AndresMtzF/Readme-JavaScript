@@ -12,7 +12,7 @@ console.error();
 console.info;
 ```
 
-![[Pasted image 20220906192417.png]]
+![Tipos de ConsoleLog](./images/Pasted image 20220906192417.png)
 
 
 ## Salida de cadenas y datos
