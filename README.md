@@ -5,6 +5,20 @@
 	* No tiene capacidad multihilo o múltiples procesos simultáneos
 	* Todo en JavaScript es un objeto
 
+## Notas del día 17 de Octubre
+
+* [Async/Await](Async/Await)
+* [Templates](Templates - Interpolar variables)
+* [Shorthand](Shorthand Property Names)
+* [Callback](Callback)
+* [ArrowFunction](ArrowFunction)
+* [Funciones Anonimas](Funciones Anónimas)
+* [Destructuring](Destructuring)
+* [Spread](Spread)
+* [FuncionesEspeciales](Funciones)
+
+
+
 ## console.log
 ```js
 console.log();
@@ -709,3 +723,370 @@ ourArray.unshift("Happy")
   ```
 
   Son un patron muy parecido a las clases en la POO, que de alguna manera permite tener variables, tipos de datos, o estructura de datos privadas
+
+
+
+## Async/Await 
+
+Existe una sintaxis especial para trabajar con promesas de una forma cómoda, llamada "async/await"
+
+```js
+const datos = [
+  {
+    id: 1,
+    title: 'Oracle Red Bull Racing',
+    car: 'RB18'
+  },
+    {
+    id: 2,
+    title: 'Scuderia Ferrari',
+    car: 'F1-75'
+  },
+    {
+    id: 1,
+    title: 'AMG Mercedes F1',
+    car: 'W13'
+  }
+];
+```
+
+### Forma anterior de Async
+
+```js
+const getDatos = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+    resolve(datos)
+  }, 1500);    
+  })
+}
+
+getDatos().then((datos) => console.log(datos));
+
+```
+
+
+
+### Con Async/Await
+
+La palabra clave async. Puede ser ubicada delante de una función. 
+
+Await hace que JavaScript espere hasta que la promesa responda y devuelve su resultado.
+
+```js
+async function AsyncAwait () {
+  const datosAwait = await getDatos();
+  console.log(datosAwait);  
+}
+
+AsyncAwait();
+```
+
+![Async/Await](./img/asyncAwait.png)
+
+## Templates - Interpolar variables
+
+La interpolación ${} permite utilizar cualquier expresión válida de JavaScript (como por ejemplo la suma de dos variables) dentro de una cadena y obtener como resultado la cadena completa con la expresión evaluada.
+
+```js
+const nombreT = 'Andres'
+const apellidoT = 'Martinez'
+
+console.log (`Hola: ${nombreT} ${apellidoT}`);
+
+//Salida: Andres Martinez
+```
+
+
+## Shorthand Property Names
+
+```js
+const nombre = 'Andres'
+const apellido = 'Martinez'
+const edad = 23
+
+const miPersona = {
+  nombre: nombre,
+  apellido: apellido,
+  edad: edad
+}
+
+console.log(miPersona);
+```
+
+Si el valor de la propiedad es exactamente igual al nombre de la propiedad, podemos ahorrarnos la escritura del valor
+
+```js
+const miPersonaDos = {
+  nombre,
+  apellido,
+  edad
+}
+
+console.log(miPersonaDos);
+```
+
+Salidas:
+
+![ShorthandProperties](./img/Shorthand.png)
+
+
+## Callback
+
+
+Una función como argumento a otra funcion, para que se llamada de nuevo (callback)
+en un momento posterior.
+se ejecutan unicamente despues de que tenga lugar otro evento o circunstancia
+
+Solo se invoca si ha tenido lugar otra accion definida
+Ejemplo: en elemento HTML, como los botones. El evento podría ser un clic 
+del raton que hace que se ejecute el callback, y la función podría ser provocar un
+un redireccionamiento a otra pagina o transmitir un valor de un formulario
+
+La principal diferencia entre una función normal y un callback:
+la función normal se ejecuta directamente, y el callback solo se define
+y se llama y ejecuta unicamente cuando ocurre un evento en concreto
+
+Una función que acepta otras funciones como argumento es llamada 
+funcion de ORDEN SUPERIOR (HIGH-ORDER) y contiene la lógica para determinar
+cuando se ejecuta la función callback
+
+
+```js
+console.log("CALLBACK");
+
+function crearCita(cita, callback){//funcion de orden superior
+    var miCita = "Como yo siempre digo, " + cita;
+    callback(miCita);
+}
+
+function logCita(cita){//funcion callback
+    console.log(cita);
+}
+
+crearCita("come tus vegetales", logCita);
+```
+
+logCita no contiene parentesis al pasarla como argumento, debido a que no queremos
+ejecutar nuestra función callback de inmediato.
+Ademas debemos asegurarno que si la función callback espera argumentos, debemos
+proporcionarlos al ejecutarla: eso seria la declaracion callback(miCita);
+ya que sabemos que logCita espera que se pase una cita.
+
+```js 
+/**
+ * resultado en la consola:
+ * Como yo siempre digo, come tus vegetales
+ */
+```
+
+## ArrowFunction
+
+Fat Arrow Function - funcion de tipo flecha =>
+
+Manera de escribir una funcion mas legible, corta y sencilla de entender
+
+Sintáxis
+
+(parametros) => { cuerpo de la funcion }
+se acostumbra guardar la arrow function en una constante o varible
+
+Función tradicional
+
+```js
+function fullName (name, last_name){
+    return `${name} ${last_name}`;
+}
+console.log(fullName('Andres', 'Martinez'));
+/* Salida esperada: Andres Martinez*/
+```
+Arrow Function
+
+```js
+const fullNames =  (name, last_name) => { return `${name} ${last_name}`}
+console.log(fullNames('Lando', 'Norris'));
+/* Salida esperada: Lando Norris*/
+```
+
+## Funciones Anónimas
+
+Recurso que permite no asignarle nombre a un conjunto de instrucciones
+que deseemos ejecutar sin necesidad de asociarlo.
+Comunmnete utilizada en callbacks o cuando queremos aislar una funcion de 
+algun otro elemento.
+
+
+```js
+function (){
+     conjunto de instrucciones
+}
+
+crearCita ("Buena suerte", function(cita){console.log(cita);})
+
+//Salida: Como yo siempre digo, Buena suerte
+```
+
+## Destructuring
+
+Permite desempacar valores de arreglos o propiedadades de objetos en distintas variables
+
+* Ejemplo 1
+
+```js
+const cuadrado = {
+  x: 10,
+  y: 10,
+}
+
+function calcularArea({x:lado1, y:lado2}){
+  return lado1 * lado2;
+}
+
+calcularArea(cuadrado);
+```
+
+
+Destructuring se puede en varios casos, los mas comunes
+ * Retorno de Funciones
+ * Parametros de Funciones
+ * Funciones múltiple
+ * Importación de Objetos
+ * Destructuring en React
+
+ Podemos destructurar los arrays
+
+```js
+const Team = {
+        name: 'RedBull Racing',
+        championships: 4,
+        drivers: ['Max Verstappen', 'Sergio Perez']    
+}
+
+const {name, championships, drivers} = Team;
+const [ firstDriver, secondDriver ]  = drivers;
+
+console.log(firstDriver);
+```
+
+* Ejemplo2 
+
+En el momento de recuperar datos de una función solemos recuperar un objeto con propiedades que nos devuelve el resultado de la misma, Destructuring nos permite obtener solo las propiedades con las que vayamos a trabajar
+
+```js
+function getTeam() {
+    return {
+        scuderia: 'RedBull Racing',
+        championships: 4,
+        drivers: ['Max Verstappen', 'Sergio Pérez']
+    }
+}
+
+const { scuderia } = getTeam();
+
+console.log(name); // result => Max Verstappen
+```
+
+## Spread Operator
+
+El spread operator (...) permite copiar rapidamente todo o parte de un array u objeto existente en otro array u objeto.
+
+```js
+const myVehicle = {
+  brand: 'Ford',
+  model: 'Mustang',
+  color: 'red'
+}
+
+const updateMyVehicle = {
+  type: 'car',
+  year: 2021, 
+  color: 'yellow'
+}
+
+const myUpdatedVehicle = {...myVehicle, ...updateMyVehicle}
+
+console.log(myUpdatedVehicle);
+```
+
+![SpreadOperator](./img/spreadOperator.png)
+
+## Funciones Especiales 
+
+### modulos ECMAScript
+
+Los modulos nos van a permititr construir diferentes ficheros para poder modularizar el codigo en varios arcivos y cuando necesitemos 'una funcion' de algun archivo, los podremos importar en otra parte.
+
+```js
+// Arhivo 1 sumas.js
+
+/*
+export const suma = (a, b) => {
+  return a + b;
+}
+export const resta = (a, b) => {
+  return a - b;
+}
+*/
+// Arhivo 2 multi.js
+
+/*
+export const multiplicacion = (a, b) => {
+  return a * b;
+}
+export const division = (a, b) => {
+  return a / b;
+}
+*/
+
+// archivo 3 calculadora.js
+/*
+// exportación nombrada
+import { suma, resta } from './suma'
+import { multiplicacion } from './multiplicacion'
+*/
+```
+
+Si en el caso de que solo exportamos una sola funcion podemos hacer uso de
+`export default nombreFuncion...`
+y para importarla solo es necesario escribir el nombre de la funcion.
+```import suma from './suma' ```
+
+
+## Operador Ternario
+
+El operardor condicional ternario es el único operador en JS que tiene tres operandos. Se usa con frecuencia como atajo para instrucción if.
+
+Sintáxis:
+
+`condición ? expr1 : expr2`
+
+Condición: Una expresión que se evalua como true o false
+Expr1, expr2: Expresiones con valores de algún tipo
+
+Si la condición es true, el operador returna el valor de la expr1, de lo contrario, devuelve el valor expr2.
+
+* if tradicional
+
+```js
+const coche = {
+  marca: 'tesla'
+}
+
+let modelo;
+
+if(coche.model) {
+  modelo = coche.model;
+}else{
+  modelo = 'X'
+}
+
+modelo;
+```
+
+* Con el operador Ternario
+
+```js
+let modeloTernario = coche.model ? coche.model : 'X'
+```
+
+![OperadorTernario](./img/operadorTernario.png)
