@@ -7,7 +7,7 @@
 
 ## Notas del día 17 de Octubre
 
-* [Async/Await](##Async/Await)
+* [Async/Await](#Async/Await)
 * [Templates](Templates - Interpolar variables)
 * [Shorthand](Shorthand Property Names)
 * [Callback](Callback)
