@@ -6,18 +6,7 @@
 	* Todo en JavaScript es un objeto
 
 ## Notas del día 17 de Octubre
-
-- [Async/Await](#async/await)
-- [Templates](Templates - Interpolar variables)
-- [Shorthand](Shorthand Property Names)
-- [Callback](Callback)
-- [ArrowFunction](ArrowFunction)
-- [Funciones Anonimas](Funciones Anónimas)
-- [Destructuring](Destructuring)
-- [Spread](Spread)
-- [FuncionesEspeciales](Funciones)
-
-
+- [17 de OCtubre](#notas-octubre-17)
 
 ## console.log
 ```js
@@ -724,7 +713,7 @@ ourArray.unshift("Happy")
 
   Son un patron muy parecido a las clases en la POO, que de alguna manera permite tener variables, tipos de datos, o estructura de datos privadas
 
-
+## Notas octubre 17
 
 ## Async/Await 
 
