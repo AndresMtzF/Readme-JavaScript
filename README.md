@@ -7,15 +7,15 @@
 
 ## Notas del día 17 de Octubre
 
-* [Async/Await](#async/await)
-* [Templates](Templates - Interpolar variables)
-* [Shorthand](Shorthand Property Names)
-* [Callback](Callback)
-* [ArrowFunction](ArrowFunction)
-* [Funciones Anonimas](Funciones Anónimas)
-* [Destructuring](Destructuring)
-* [Spread](Spread)
-* [FuncionesEspeciales](Funciones)
+- [Async/Await](#async/await)
+- [Templates](Templates - Interpolar variables)
+- [Shorthand](Shorthand Property Names)
+- [Callback](Callback)
+- [ArrowFunction](ArrowFunction)
+- [Funciones Anonimas](Funciones Anónimas)
+- [Destructuring](Destructuring)
+- [Spread](Spread)
+- [FuncionesEspeciales](Funciones)
 
 
 
